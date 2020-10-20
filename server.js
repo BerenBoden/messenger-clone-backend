@@ -3,9 +3,12 @@ import express from 'express'
 import mongoose from 'mongoose'
 import Pusher from 'pusher'
 import cors from 'cors'
+import dotenv from 'dotenv'
 import mongoMessages from './messageModel.js'
 
+
 // App conifg
+dotenv.config()
 const app = express()
 const PORT = process.env.PORT || 9000
 
@@ -22,7 +25,7 @@ app.use(express.json())
 app.use(cors())
 
 // DB config
-const mongoURI = 'mongodb+srv://berenb:fIZ5h0wAVD9KMcgo@Cluster0.sjvuv.mongodb.net/messenger_clone?retryWrites=true&w=majority'
+const mongoURI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@Cluster0.sjvuv.mongodb.net/messenger_clone?retryWrites=true&w=majority`
 mongoose.connect(mongoURI), {
     useCreateIndex: true,
     useNewUrlParser: true,
